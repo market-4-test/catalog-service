@@ -208,7 +208,7 @@ export class CategoriesService {
       });
 
     if (!entity) {
-      throw new NotFoundException(`Бренд с id ${dto.id} не найден`);
+      throw new NotFoundException(`Категория с id ${dto.id} не найден`);
     }
 
     return this.convertEntityToModel(entity);
@@ -230,7 +230,7 @@ export class CategoriesService {
       });
 
     if (!entity) {
-      throw new NotFoundException(`Бренд с id ${dto.id} не найден`);
+      throw new NotFoundException(`Категория с id ${dto.id} не найден`);
     }
 
     return this.convertEntityShortToModelShort(entity);
@@ -287,7 +287,7 @@ export class CategoriesService {
       id: dto.id,
     });
     if (!existing) {
-      throw new NotFoundException(`Brand с id ${dto.id} не найден`);
+      throw new NotFoundException(`Category с id ${dto.id} не найден`);
     }
 
     try {
@@ -302,7 +302,7 @@ export class CategoriesService {
         const pgError = error.driverError;
         if (pgError.code === '23505') {
           throw new ConflictException(
-            `Бренд с именем "${dto.data.name}" уже существует`,
+            `Категория с именем "${dto.data.name}" уже существует`,
           );
         }
       }
@@ -321,7 +321,7 @@ export class CategoriesService {
       const result: DeleteResult = await this._categoriesRepository.delete(id);
 
       if (result.affected === 0) {
-        throw new NotFoundException(`Brand с ID ${id} не найден`);
+        throw new NotFoundException(`Category с ID ${id} не найден`);
       }
 
       return true;
