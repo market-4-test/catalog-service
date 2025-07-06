@@ -4,9 +4,12 @@ import { ValidationPipe } from '@nestjs/common';
 import { json } from 'express';
 import { map } from 'rxjs';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const configService = app.get(ConfigService);
+
   app.use(json());
   app.enableCors();
 
@@ -63,7 +66,8 @@ async function bootstrap() {
   //   }
   //   next();
   // });
-  await app.listen(process.env.PORT ?? 3020);
+  const port = configService.get<number>('PORT') || 3020;
+  await app.listen(port);
 }
 
 bootstrap();
