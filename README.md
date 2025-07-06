@@ -43,6 +43,7 @@ This project is a catalog service developed with NestJS. It provides an API for 
 
     ```
     # Server settings
+    # Server settings
     PORT=3020
 
     # PostgreSQL database settings
